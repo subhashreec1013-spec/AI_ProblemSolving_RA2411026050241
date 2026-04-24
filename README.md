@@ -1,15 +1,15 @@
-# GPS-Based City Route Finder using A* Algorithm  
-### *(Artificial Intelligence Problem Solving Project)*
+# 🚀 GPS-Based City Route Finder using A* Algorithm  
+### 📍*(Artificial Intelligence Problem Solving Project)*
 
 ---
 
-## Objective
+## 🎯Objective
 
 The objective of this project is to apply Artificial Intelligence problem-solving techniques to find the most optimal route between two locations in a city using search algorithms. The system simulates a GPS-based navigation system with intelligent pathfinding capabilities.
 
 ---
 
-##  Problem Description
+## 📖 Problem Description
 
 This project focuses on designing a GPS-based navigation system that determines the most efficient route between two locations in a city. The city is modeled as a weighted graph or grid, where each node represents a location and each edge represents a path with an associated travel cost such as distance or time. Some paths may be blocked due to obstacles like traffic or construction.
 
@@ -20,7 +20,7 @@ The solution ensures that a valid and optimal path is found whenever one exists.
 
 ---
 
-## Graph Representation
+## 🗺️ Graph Representation
 
 The city is represented as a 2D weighted grid:
 
@@ -73,7 +73,7 @@ Where:
 
 ---
 
-## Heuristic Functions
+## 📐Heuristic Functions
 
 ###  Manhattan Distance
 |x1 - x2| + |y1 - y2|
@@ -98,7 +98,7 @@ Where:
 
 ---
 
-## Features
+## 🧩 Features
 
 - Interactive grid-based UI  
 - Set Start (Green) and End (Red) nodes  
@@ -135,7 +135,7 @@ Where:
 
 ---
 
-##  Sample Input
+## 🧾Sample Input
 
 Grid:
 [
@@ -149,7 +149,7 @@ Goal: (2,2)
 
 ---
 
-##  Sample Output
+## 📤Sample Output
 
 Algorithm: A*  
 
@@ -188,11 +188,11 @@ AI_ProblemSolving_<RA2411026050241>/
 ``` 
 
 ---
-## Live Demo
+## 🌐 Live Demo
 Click below to open the deployed application:
 https://route-finder-bkpi.onrender.com
 
-## Screenshots
+## 🖥 Screenshots
 
 
 ### 🔹 Initial UI
@@ -209,7 +209,7 @@ https://route-finder-bkpi.onrender.com
 ![Comparison](images/compare.png)
 ---
 
-## Author
+## 👤 Author
 
 Name: Subha Shree C 
 
@@ -218,7 +218,7 @@ Register Number: RA2411026050241
 
 ---
 
-## Conclusion
+## 🏁Conclusion
 
 This project demonstrates the application of AI search algorithms in solving real-world navigation problems. Among all algorithms, A* provides the best performance by combining actual cost and heuristic estimation, making it highly efficient for GPS-based systems.
 
