@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPS Route Finder &middot; A* Pathfinding</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" stroke="#00f5d4" stroke-width="1.5"/>
+            <path d="M8 20 L20 8 L32 20 L20 32 Z" stroke="#00f5d4" stroke-width="1.2" fill="none"/>
+            <circle cx="20" cy="20" r="3" fill="#00f5d4"/>
+            <line x1="20" y1="8" x2="20" y2="32" stroke="#00f5d4" stroke-width="0.5" opacity="0.4"/>
+            <line x1="8" y1="20" x2="32" y2="20" stroke="#00f5d4" stroke-width="0.5" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">PATHFINDER</span>
+          <span class="logo-sub">GPS &middot; A* Algorithm &middot; AI Search</span>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge--astar">A*</span>
+        <span class="badge badge--dijkstra">Dijkstra</span>
+        <span class="badge badge--bfs">BFS</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-layout">
+
+    <!-- LEFT PANEL -->
+    <aside class="panel panel--left">
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x229E;</span> GRID SIZE</h3>
+        <div class="inline-controls">
+          <label>Rows<input type="number" id="inp-rows" value="20" min="5" max="40" /></label>
+          <label>Cols<input type="number" id="inp-cols" value="30" min="5" max="60" /></label>
+        </div>
+        <button class="btn btn--secondary" id="btn-new-grid">Generate Grid</button>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x270F;</span> DRAW MODE</h3>
+        <div class="mode-buttons">
+          <button class="mode-btn active" data-mode="start" id="mode-start">
+            <span class="mode-dot mode-dot--start"></span>Start
+          </button>
+          <button class="mode-btn" data-mode="end" id="mode-end">
+            <span class="mode-dot mode-dot--end"></span>End
+          </button>
+          <button class="mode-btn" data-mode="wall" id="mode-wall">
+            <span class="mode-dot mode-dot--wall"></span>Wall
+          </button>
+          <button class="mode-btn" data-mode="weight" id="mode-weight">
+            <span class="mode-dot mode-dot--weight"></span>Weight
+          </button>
+          <button class="mode-btn" data-mode="erase" id="mode-erase">
+            <span class="mode-dot mode-dot--erase"></span>Erase
+          </button>
+        </div>
+        <div class="weight-selector" id="weight-selector" style="display:none">
+          <label>Traffic Weight:
+            <input type="range" id="weight-value" min="2" max="9" value="3" />
+            <span id="weight-display">3</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x2699;</span> ALGORITHM</h3>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="algorithm" value="astar" checked /><span>A* Search</span></label>
+          <label class="radio-label"><input type="radio" name="algorithm" value="dijkstra" /><span>Dijkstra</span></label>
+          <label class="radio-label"><input type="radio" name="algorithm" value="bfs" /><span>BFS</span></label>
+          <label class="radio-label"><input type="radio" name="algorithm" value="compare" /><span>Compare All</span></label>
+        </div>
+      </section>
+
+      <section class="control-group" id="heuristic-section">
+        <h3 class="group-title"><span class="icon">h(n)</span> HEURISTIC</h3>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="heuristic" value="manhattan" checked /><span>Manhattan Distance</span></label>
+          <label class="radio-label"><input type="radio" name="heuristic" value="euclidean" /><span>Euclidean Distance</span></label>
+        </div>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x25BA;</span> ANIMATION</h3>
+        <label class="speed-label">Speed:
+          <input type="range" id="speed-slider" min="1" max="100" value="50" />
+          <span id="speed-display">60ms</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="animate-toggle" checked /> Animate search process
+        </label>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x25A3;</span> ACTIONS</h3>
+        <button class="btn btn--primary"   id="btn-run">&#x25BA; Run Algorithm</button>
+        <button class="btn btn--warning"   id="btn-clear-path">Clear Path</button>
+        <button class="btn btn--danger"    id="btn-reset">Reset Grid</button>
+        <button class="btn btn--secondary" id="btn-random-maze">Random Maze</button>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x25C8;</span> LEGEND</h3>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#00ff88"></span>Start Node</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#ff3d6b"></span>End Node</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#0a0a14;border:1px solid #333"></span>Wall</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#f7c59f"></span>Open Set</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#4d79ff"></span>Closed Set</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#ffd700"></span>Final Path</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#e55a00"></span>Weighted Cell</div>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- CENTER GRID -->
+    <div class="grid-section">
+      <div class="grid-header">
+        <span id="grid-status" class="grid-status">Click a cell to set Start &rarr; then End &rarr; draw walls</span>
+        <span id="grid-coords" class="grid-coords"></span>
+      </div>
+      <div class="grid-wrapper">
+        <div id="grid-container" class="grid-container"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <aside class="panel panel--right">
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x25C9;</span> RESULTS</h3>
+        <div class="results-box" id="results-box">
+          <p class="results-placeholder">Run an algorithm to see results here.</p>
+        </div>
+      </section>
+
+      <section class="control-group" id="compare-section" style="display:none">
+        <h3 class="group-title"><span class="icon">&#x2261;</span> COMPARISON</h3>
+        <div class="compare-table-wrapper">
+          <table class="compare-table" id="compare-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th class="col-astar">A*</th>
+                <th class="col-dijkstra">Dijkstra</th>
+                <th class="col-bfs">BFS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Path Found</td><td id="cmp-astar-found">&#8212;</td><td id="cmp-dijkstra-found">&#8212;</td><td id="cmp-bfs-found">&#8212;</td></tr>
+              <tr><td>Path Cost</td><td id="cmp-astar-cost">&#8212;</td><td id="cmp-dijkstra-cost">&#8212;</td><td id="cmp-bfs-cost">&#8212;</td></tr>
+              <tr><td>Nodes Explored</td><td id="cmp-astar-nodes">&#8212;</td><td id="cmp-dijkstra-nodes">&#8212;</td><td id="cmp-bfs-nodes">&#8212;</td></tr>
+              <tr><td>Path Length</td><td id="cmp-astar-len">&#8212;</td><td id="cmp-dijkstra-len">&#8212;</td><td id="cmp-bfs-len">&#8212;</td></tr>
+              <tr><td>Time (ms)</td><td id="cmp-astar-time">&#8212;</td><td id="cmp-dijkstra-time">&#8212;</td><td id="cmp-bfs-time">&#8212;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="compare-bars" class="compare-bars"></div>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x2211;</span> A* FORMULA</h3>
+        <div class="formula-box">
+          <div class="formula-line">
+            <span class="formula-f">f(n)</span>
+            <span class="formula-eq">=</span>
+            <span class="formula-g">g(n)</span>
+            <span class="formula-plus">+</span>
+            <span class="formula-h">h(n)</span>
+          </div>
+          <div class="formula-desc">
+            <div><span class="formula-g">g(n)</span> actual cost from start &rarr; n</div>
+            <div><span class="formula-h">h(n)</span> heuristic cost from n &rarr; goal</div>
+            <div><span class="formula-f">f(n)</span> total estimated path cost</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-group">
+        <h3 class="group-title"><span class="icon">&#x25C8;</span> LIVE STATS</h3>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-val" id="stat-open">0</div><div class="stat-label">Open Set</div></div>
+          <div class="stat-card"><div class="stat-val" id="stat-closed">0</div><div class="stat-label">Closed Set</div></div>
+          <div class="stat-card"><div class="stat-val" id="stat-path">0</div><div class="stat-label">Path Nodes</div></div>
+          <div class="stat-card"><div class="stat-val" id="stat-cost">0</div><div class="stat-label">Total Cost</div></div>
+        </div>
+      </section>
+
+    </aside>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/static/script.js"></script>
+</body>
+</html>
