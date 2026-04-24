@@ -122,7 +122,7 @@ Where:
 1. Clone the repository  
    git clone <https://github.com/subhashreec1013-spec/AI_ProblemSolving_RA2411026050241>  
      
-   cd AI_ProblemSolving_<RA2411026050241>  
+   cd AI_ProblemSolving_RA2411026050241 
 
 2. Install dependencies  
    pip install -r requirements.txt  
@@ -162,24 +162,6 @@ Execution Time: ~0.05 ms
 
 ---
 
-## 🌐 API Endpoints
-
-| Endpoint | Method | Description |
-|--------|--------|------------|
-| /astar | POST | Run A* Algorithm |
-| /dijkstra | POST | Run Dijkstra |
-| /bfs | POST | Run BFS |
-
-Example Request:
-{
-  "grid": [[0,0,0],[0,-1,0],[0,0,0]],
-  "start": [0,0],
-  "goal": [2,2],
-  "heuristic": "manhattan"
-}
-
----
-
 ## 📁 Project Structure
 
 AI_ProblemSolving_<RA2411026050241>/
@@ -197,6 +179,7 @@ AI_ProblemSolving_<RA2411026050241>/
 │   ├── style.css  
 │   ├── script.js  
 │
+├── images/
 ├── README.md  
 ├── requirements.txt 
  
@@ -226,6 +209,7 @@ https://route-finder-bkpi.onrender.com
 ## Author
 
 Name: Subha Shree C 
+
 Register Number: RA2411026050241 
 
 
