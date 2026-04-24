@@ -11,8 +11,11 @@ The objective of this project is to apply Artificial Intelligence problem-solvin
 
 ## 🧠 Problem Description
 
-In real-world navigation systems, determining the shortest and most efficient route is essential. This project models a city as a weighted graph and uses AI algorithms to compute the optimal path between a start and goal location while considering obstacles and varying travel costs.
+This project focuses on designing a GPS-based navigation system that determines the most efficient route between two locations in a city. The city is modeled as a weighted graph or grid, where each node represents a location and each edge represents a path with an associated travel cost such as distance or time. Some paths may be blocked due to obstacles like traffic or construction.
 
+The system allows users to interactively select a start location and a destination through a graphical interface. Using the A* (A-star) search algorithm, the system computes the optimal route by considering both the actual cost from the start node and a heuristic estimate of the remaining distance to the goal.
+
+The solution ensures that a valid and optimal path is found whenever one exists. The final output displays the computed route, the total travel cost, and the number of nodes explored during the search process.
 ---
 
 ## 🗺️ Graph Representation
@@ -115,8 +118,9 @@ Where:
 ## ▶️ Execution Steps
 
 1. Clone the repository  
-   git clone <your-repo-link>  
-   cd AI_ProblemSolving_<RegisterNumber>  
+   git clone <https://github.com/subhashreec1013-spec/AI_ProblemSolving_RA2411026050241>  
+     
+   cd AI_ProblemSolving_<RA2411026050241>  
 
 2. Install dependencies  
    pip install -r requirements.txt  
@@ -176,7 +180,7 @@ Example Request:
 
 ## 📁 Project Structure
 
-AI_ProblemSolving_<RegisterNumber>/
+AI_ProblemSolving_<RA2411026050241>/
 │
 ├── app.py  
 ├── algorithms/  
@@ -192,21 +196,32 @@ AI_ProblemSolving_<RegisterNumber>/
 │   ├── script.js  
 │
 ├── README.md  
-├── requirements.txt  
+├── requirements.txt 
+ 
 
 ---
+## Live Demo
+Click below to open the deployed application:
+https://route-finder-bkpi.onrender.com
 
-## 🖼️ Screenshots
+## Screenshots
 
-(Add screenshots before submission)
 
-- Grid Interface  
-- Path Visualization  
-- Algorithm Comparison  
+### 🔹 Initial UI
+![UI](images/ui.png)
 
+### 🔹 A* Path Result
+![A*](images/astar.png)
+
+
+### 🔹 Weighted Traffic Routing
+![Weights](images/weights.png)
+
+### 🔹 Algorithm Comparison
+![Comparison](images/compare.png)
 ---
 
-## 👨‍💻 Author
+## Author
 
 Name: Subha Shree C 
 Register Number: RA2411026050241 
@@ -214,7 +229,7 @@ Register Number: RA2411026050241
 
 ---
 
-## ✅ Conclusion
+## Conclusion
 
 This project demonstrates the application of AI search algorithms in solving real-world navigation problems. Among all algorithms, A* provides the best performance by combining actual cost and heuristic estimation, making it highly efficient for GPS-based systems.
 
