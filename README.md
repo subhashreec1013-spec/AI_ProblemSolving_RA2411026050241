@@ -13,9 +13,11 @@ The objective of this project is to apply Artificial Intelligence problem-solvin
 
 This project focuses on designing a GPS-based navigation system that determines the most efficient route between two locations in a city. The city is modeled as a weighted graph or grid, where each node represents a location and each edge represents a path with an associated travel cost such as distance or time. Some paths may be blocked due to obstacles like traffic or construction.
 
-The system allows users to interactively select a start location and a destination through a graphical interface. Using the A* (A-star) search algorithm, the system computes the optimal route by considering both the actual cost from the start node and a heuristic estimate of the remaining distance to the goal.
+The syste allows users to interactively select a start location and a destination through a graphical interface. Using the A* (A-star) search algorithm, the system computes the optimal route by considering both the actual cost from the start node and a heuristic estimate of the remaining distance to the goal.
 
 The solution ensures that a valid and optimal path is found whenever one exists. The final output displays the computed route, the total travel cost, and the number of nodes explored during the search process.
+
+
 ---
 
 ## 🗺️ Graph Representation
