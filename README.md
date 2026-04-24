@@ -1,15 +1,15 @@
-# 🚀 GPS-Based City Route Finder using A* Algorithm  
+# GPS-Based City Route Finder using A* Algorithm  
 ### *(Artificial Intelligence Problem Solving Project)*
 
 ---
 
-## 📌 Objective
+## Objective
 
 The objective of this project is to apply Artificial Intelligence problem-solving techniques to find the most optimal route between two locations in a city using search algorithms. The system simulates a GPS-based navigation system with intelligent pathfinding capabilities.
 
 ---
 
-## 🧠 Problem Description
+##  Problem Description
 
 This project focuses on designing a GPS-based navigation system that determines the most efficient route between two locations in a city. The city is modeled as a weighted graph or grid, where each node represents a location and each edge represents a path with an associated travel cost such as distance or time. Some paths may be blocked due to obstacles like traffic or construction.
 
@@ -20,7 +20,7 @@ The solution ensures that a valid and optimal path is found whenever one exists.
 
 ---
 
-## 🗺️ Graph Representation
+## Graph Representation
 
 The city is represented as a 2D weighted grid:
 
@@ -73,14 +73,14 @@ Where:
 
 ---
 
-## 📏 Heuristic Functions
+## Heuristic Functions
 
-### ✅ Manhattan Distance
+###  Manhattan Distance
 |x1 - x2| + |y1 - y2|
 
 - Best suited for grid movement without diagonals  
 
-### ✅ Euclidean Distance
+### Euclidean Distance
 √((x1 - x2)^2 + (y1 - y2)^2)
 
 - More realistic distance calculation  
@@ -98,7 +98,7 @@ Where:
 
 ---
 
-## 🎮 Features
+## Features
 
 - Interactive grid-based UI  
 - Set Start (Green) and End (Red) nodes  
@@ -135,7 +135,7 @@ Where:
 
 ---
 
-## 🧪 Sample Input
+##  Sample Input
 
 Grid:
 [
@@ -149,7 +149,7 @@ Goal: (2,2)
 
 ---
 
-## 📤 Sample Output
+##  Sample Output
 
 Algorithm: A*  
 
@@ -165,23 +165,26 @@ Execution Time: ~0.05 ms
 ## 📁 Project Structure
 
 AI_ProblemSolving_<RA2411026050241>/
-│
-├── app.py  
-├── algorithms/  
-│   ├── astar.py  
-│   ├── dijkstra.py  
-│   ├── bfs.py  
-│
-├── templates/  
-│   └── index.html  
-│
-├── static/  
-│   ├── style.css  
-│   ├── script.js  
-│
+├── app.py
+├── algorithms/
+│   ├── __init__.py
+│   ├── astar.py
+│   ├── dijkstra.py
+│   └── bfs.py
+├── templates/
+│   └── index.html
+├── static/
+│   ├── style.css
+│   └── script.js
 ├── images/
-├── README.md  
-├── requirements.txt 
+│   ├── ui.png
+│   ├── astar.png
+│   ├── walls.png
+│   ├── weights.png
+│   └── compare.png
+├── README.md
+├── requirements.txt
+└── Procfile
  
 
 ---
