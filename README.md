@@ -163,7 +163,7 @@ Execution Time: ~0.05 ms
 ---
 
 ## 📁 Project Structure
-
+```
 AI_ProblemSolving_<RA2411026050241>/
 ├── app.py
 ├── algorithms/
@@ -185,7 +185,7 @@ AI_ProblemSolving_<RA2411026050241>/
 ├── README.md
 ├── requirements.txt
 └── Procfile
- 
+``` 
 
 ---
 ## Live Demo
